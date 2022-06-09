@@ -24,6 +24,19 @@ public class UserResponse {
         this.updatedAt = updatedAt;
     }
 
+    @Override
+    public String toString() {
+        return "UserResponse{" +
+                "id=" + id +
+                ", type='" + type + '\'' +
+                ", trangThai='" + trangThai + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                '}';
+    }
+
     public void setId(int id) {
         this.id = id;
     }

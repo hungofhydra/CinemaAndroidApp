@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -27,6 +28,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText edtUserName;
     private EditText edtPassword;
     private Button btnLogin;
+    private Button btnRegister;
     LoginResponse test;
 
     @Override
@@ -37,6 +39,15 @@ public class LoginActivity extends AppCompatActivity {
         edtUserName = findViewById(R.id.edt_username);
         edtPassword = findViewById(R.id.edt_password);
         btnLogin = findViewById(R.id.btl_login);
+        btnRegister = findViewById(R.id.btn_register);
+
+        btnRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivity(intent);
+            }
+        });
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,10 +76,12 @@ public class LoginActivity extends AppCompatActivity {
                 public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                     Toast.makeText(LoginActivity.this, "Call API SUCCESS", Toast.LENGTH_SHORT).show();
                     test = response.body();
-                    if (test == null) alert("Sai username va password");
+                    if (test == null) alert("Sai username hoac password");
                     else {
+
                         Log.e("Token" ,test.getToken());
                         Log.e("Message" ,test.getMessage());
+
                     }
 
                 }
