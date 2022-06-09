@@ -29,7 +29,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText edtPassword;
     private Button btnLogin;
     private Button btnRegister;
-    LoginResponse test;
+    LoginResponse result;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +55,7 @@ public class LoginActivity extends AppCompatActivity {
                 String username = edtUserName.getText().toString();
                 String password = edtPassword.getText().toString();
                 if (username.isEmpty() || password.isEmpty()){
-                    alert("Vui long nhap thong tin");
+                    alert("Please input all the data required");
                 }
                 else {
                     clickLogin();
@@ -74,13 +74,14 @@ public class LoginActivity extends AppCompatActivity {
             loginResponseCall.enqueue(new Callback<LoginResponse>() {
                 @Override
                 public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                    Toast.makeText(LoginActivity.this, "Call API SUCCESS", Toast.LENGTH_SHORT).show();
-                    test = response.body();
-                    if (test == null) alert("Sai username hoac password");
+                    //Toast.makeText(LoginActivity.this, "Call API SUCCESS", Toast.LENGTH_SHORT).show();
+                    result = response.body();
+                    if (result == null) alert("Wrong username or password");
                     else {
-
-                        Log.e("Token" ,test.getToken());
-                        Log.e("Message" ,test.getMessage());
+                        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                        intent.putExtra("LOGIN_RESPONSE", result);
+                        startActivity(intent);
+                        Toast.makeText(LoginActivity.this, "Login success", Toast.LENGTH_SHORT).show();
 
                     }
 
@@ -88,13 +89,9 @@ public class LoginActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(Call<LoginResponse> call, Throwable t) {
-
+                    Toast.makeText(LoginActivity.this, "Call API FAIL", Toast.LENGTH_SHORT).show();
                 }
             });
-
-
-
-
     }
 
     private void alert(String message){

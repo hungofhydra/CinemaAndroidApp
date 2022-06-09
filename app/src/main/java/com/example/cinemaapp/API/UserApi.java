@@ -2,6 +2,7 @@ package com.example.cinemaapp.API;
 
 import com.example.cinemaapp.Models.LoginData;
 import com.example.cinemaapp.Models.LoginResponse;
+import com.example.cinemaapp.Models.RegisterData;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -22,6 +23,9 @@ public interface UserApi {
     @POST("users/sign-in/")
     Call<LoginResponse> signIn(@Body LoginData loginData);
 
+    @Headers( "Content-Type: application/json" )
+    @POST("users/sign-up/")
+    Call<Void> signUp(@Body RegisterData registerData);
 
 
 }

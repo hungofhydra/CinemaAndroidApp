@@ -1,6 +1,8 @@
 package com.example.cinemaapp.Models;
 
-public class LoginResponse {
+import java.io.Serializable;
+
+public class LoginResponse implements Serializable {
     public String message;
     public UserResponse userResponse;
     public String token;
