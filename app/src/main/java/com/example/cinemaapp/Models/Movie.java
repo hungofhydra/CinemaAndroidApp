@@ -1,26 +1,39 @@
 package com.example.cinemaapp.Models;
 
 public class Movie {
-    private int maTheLoai;
-    private String tenPhim;
-    private String noiDungPhim;
-    private String daoDien;
-    private String nuocSanXuat;
-    private String thoiLuong;
-    private String trailer;
-    private String poster;
-    private String trangThai;
+    public int id;
+    public int maTheLoai;
+    public String tenPhim;
+    public String noiDungPhim;
+    public String daoDien;
+    public String nuocSanXuat;
+    public String thoiLuong;
+    public String trailer;
+    public String poster;
+    public String trangThai;
 
-    public Movie(int maTheLoai, String tenPhim, String noiDungPhim, String daoDien, String nuocSanXuat, String thoiLuong, String trailer, String poster, String trangThai) {
-        this.maTheLoai = maTheLoai;
-        this.tenPhim = tenPhim;
-        this.noiDungPhim = noiDungPhim;
-        this.daoDien = daoDien;
-        this.nuocSanXuat = nuocSanXuat;
-        this.thoiLuong = thoiLuong;
-        this.trailer = trailer;
-        this.poster = poster;
-        this.trangThai = trangThai;
+    @Override
+    public String toString() {
+        return "Movie{" +
+                "id=" + id +
+                ", maTheLoai=" + maTheLoai +
+                ", tenPhim='" + tenPhim + '\'' +
+                ", noiDungPhim='" + noiDungPhim + '\'' +
+                ", daoDien='" + daoDien + '\'' +
+                ", nuocSanXuat='" + nuocSanXuat + '\'' +
+                ", thoiLuong='" + thoiLuong + '\'' +
+                ", trailer='" + trailer + '\'' +
+                ", poster='" + poster + '\'' +
+                ", trangThai='" + trangThai + '\'' +
+                '}';
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getMaTheLoai() {
@@ -92,6 +105,19 @@ public class Movie {
     }
 
     public void setTrangThai(String trangThai) {
+        this.trangThai = trangThai;
+    }
+
+    public Movie(int id, int maTheLoai, String tenPhim, String noiDungPhim, String daoDien, String nuocSanXuat, String thoiLuong, String trailer, String poster, String trangThai) {
+        this.id = id;
+        this.maTheLoai = maTheLoai;
+        this.tenPhim = tenPhim;
+        this.noiDungPhim = noiDungPhim;
+        this.daoDien = daoDien;
+        this.nuocSanXuat = nuocSanXuat;
+        this.thoiLuong = thoiLuong;
+        this.trailer = trailer;
+        this.poster = poster;
         this.trangThai = trangThai;
     }
 }

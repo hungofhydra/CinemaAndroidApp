@@ -1,5 +1,7 @@
 package com.example.cinemaapp.API;
 
+import com.example.cinemaapp.Models.Movie;
+
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -21,6 +23,11 @@ public class RetrofitClient {
     public static UserApi getUserApi(){
         UserApi userApi = getRetrofit().create(UserApi.class);
         return userApi;
+    }
+
+    public static MovieApi getMovieApi(){
+        MovieApi movieApi = getRetrofit().create(MovieApi.class);
+        return movieApi;
     }
 
 }

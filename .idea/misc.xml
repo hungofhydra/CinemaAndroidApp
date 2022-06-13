@@ -3,10 +3,29 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Hoc Tap/Nam 4 HK2/CinemaApp/app/src/main/res/layout/activity_home.xml" value="0.22530996152201796" />
+        <entry key="..\:/Hoc Tap/Nam 4 HK2/CinemaApp/app/src/main/res/layout/activity_home.xml" value="0.2" />
+        <entry key="..\:/Hoc Tap/Nam 4 HK2/CinemaApp/app/src/main/res/layout/activity_home_page_movie.xml" value="0.22530996152201796" />
         <entry key="..\:/Hoc Tap/Nam 4 HK2/CinemaApp/app/src/main/res/layout/activity_login.xml" value="0.1559383499546691" />
-        <entry key="..\:/Hoc Tap/Nam 4 HK2/CinemaApp/app/src/main/res/layout/activity_main.xml" value="0.16799999999999998" />
+        <entry key="..\:/Hoc Tap/Nam 4 HK2/CinemaApp/app/src/main/res/layout/activity_main.xml" value="0.152" />
+        <entry key="..\:/Hoc Tap/Nam 4 HK2/CinemaApp/app/src/main/res/layout/activity_profile.xml" value="0.10389055151774262" />
         <entry key="..\:/Hoc Tap/Nam 4 HK2/CinemaApp/app/src/main/res/layout/activity_register.xml" value="0.264" />
+        <entry key="..\:/Hoc Tap/Nam 4 HK2/CinemaApp/app/src/main/res/layout/activity_user.xml" value="0.264" />
+        <entry key="..\:/Hoc Tap/Nam 4 HK2/CinemaApp/app/src/main/res/layout/app_bar_home_page.xml" value="0.264" />
+        <entry key="..\:/Hoc Tap/Nam 4 HK2/CinemaApp/app/src/main/res/layout/app_bar_home_page_movie.xml" value="0.22530996152201796" />
+        <entry key="..\:/Hoc Tap/Nam 4 HK2/CinemaApp/app/src/main/res/layout/content_home_page.xml" value="0.2" />
+        <entry key="..\:/Hoc Tap/Nam 4 HK2/CinemaApp/app/src/main/res/layout/content_home_page_movie.xml" value="0.1" />
+        <entry key="..\:/Hoc Tap/Nam 4 HK2/CinemaApp/app/src/main/res/layout/fragment_currently_showing.xml" value="0.1" />
+        <entry key="..\:/Hoc Tap/Nam 4 HK2/CinemaApp/app/src/main/res/layout/fragment_gallery.xml" value="0.10389055151774262" />
+        <entry key="..\:/Hoc Tap/Nam 4 HK2/CinemaApp/app/src/main/res/layout/fragment_home.xml" value="0.128" />
+        <entry key="..\:/Hoc Tap/Nam 4 HK2/CinemaApp/app/src/main/res/layout/fragment_profile.xml" value="0.17657118426678067" />
+        <entry key="..\:/Hoc Tap/Nam 4 HK2/CinemaApp/app/src/main/res/layout/fragment_showing_soon.xml" value="0.22530996152201796" />
+        <entry key="..\:/Hoc Tap/Nam 4 HK2/CinemaApp/app/src/main/res/layout/fragment_slideshow.xml" value="0.25" />
+        <entry key="..\:/Hoc Tap/Nam 4 HK2/CinemaApp/app/src/main/res/layout/movie_item_list.xml" value="0.264" />
+        <entry key="..\:/Hoc Tap/Nam 4 HK2/CinemaApp/app/src/main/res/layout/nav_header_home_page.xml" value="0.264" />
+        <entry key="..\:/Hoc Tap/Nam 4 HK2/CinemaApp/app/src/main/res/layout/nav_header_home_page_movie.xml" value="0.22530996152201796" />
+        <entry key="..\:/Hoc Tap/Nam 4 HK2/CinemaApp/app/src/main/res/menu/activity_main_drawer.xml" value="0.22530996152201796" />
+        <entry key="..\:/Hoc Tap/Nam 4 HK2/CinemaApp/app/src/main/res/menu/bottom_nav_menu.xml" value="0.17657118426678067" />
+        <entry key="..\:/Hoc Tap/Nam 4 HK2/CinemaApp/app/src/main/res/menu/home_page_movie.xml" value="0.22530996152201796" />
       </map>
     </option>
   </component>

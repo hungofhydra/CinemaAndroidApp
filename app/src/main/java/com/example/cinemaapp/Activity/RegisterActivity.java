@@ -1,9 +1,7 @@
-package com.example.cinemaapp;
-
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.cinemaapp.Activity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,9 +10,13 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.cinemaapp.API.RetrofitClient;
-import com.example.cinemaapp.Models.LoginResponse;
 import com.example.cinemaapp.Models.RegisterData;
+import com.example.cinemaapp.Models.RegisterResponse;
+import com.example.cinemaapp.R;
 
 import java.util.regex.Pattern;
 
@@ -36,6 +38,7 @@ public class RegisterActivity extends AppCompatActivity {
     private String sex;
     private String regexPattern = "^(.+)@(\\S+)$";
     private RegisterData registerData;
+    private RegisterResponse result;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -86,15 +89,17 @@ public class RegisterActivity extends AppCompatActivity {
             else if (phoneNumber.length()!= 10) alert("Error","Wrong phone number format");
             else {
                 registerData = new RegisterData(name,sex,cmnd,phoneNumber,email,userName,password);
-                Call<Void> registerCall = RetrofitClient.getUserApi().signUp(registerData);
-                registerCall.enqueue(new Callback<Void>() {
+                Call<RegisterResponse> registerCall = RetrofitClient.getUserApi().signUp(registerData);
+                registerCall.enqueue(new Callback<RegisterResponse>() {
                     @Override
-                    public void onResponse(Call<Void> call, Response<Void> response) {
-                        alert("Sucess","Register Successful");
+                    public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
+                        result = response.body();
+                        Log.e("Test", result.getMessage());
+                        alert("Success","Create User success");
                     }
 
                     @Override
-                    public void onFailure(Call<Void> call, Throwable t) {
+                    public void onFailure(Call<RegisterResponse> call, Throwable t) {
                         Log.e("Error", t.getMessage());
                         Toast.makeText(RegisterActivity.this, "Call API FAIL", Toast.LENGTH_SHORT).show();
                     }
@@ -119,6 +124,8 @@ public class RegisterActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
+                        Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                        startActivity(intent);
                     }
                 })
                 .create();
