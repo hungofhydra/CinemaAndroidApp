@@ -15,9 +15,11 @@ import com.example.cinemaapp.API.RetrofitClient;
 import com.example.cinemaapp.HomePageMovie;
 import com.example.cinemaapp.Models.LoginData;
 import com.example.cinemaapp.Models.LoginResponse;
+import com.example.cinemaapp.Models.Movie;
 import com.example.cinemaapp.R;
 
 import java.io.Serializable;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -29,6 +31,8 @@ public class LoginActivity extends AppCompatActivity {
     private EditText edtPassword;
     private Button btnLogin;
     private Button btnRegister;
+    List<Movie> movieList;
+
     LoginResponse result;
 
     @Override
@@ -71,31 +75,32 @@ public class LoginActivity extends AppCompatActivity {
         String username = edtUserName.getText().toString();
         String password = edtPassword.getText().toString();
 
-
-            Call<LoginResponse> loginResponseCall = RetrofitClient.getUserApi().signIn(new LoginData(username, password));
-            loginResponseCall.enqueue(new Callback<LoginResponse>() {
-                @Override
-                public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                    //Toast.makeText(LoginActivity.this, "Call API SUCCESS", Toast.LENGTH_SHORT).show();
-                    result = response.body();
-                    if (result == null) alert("Wrong username or password");
-                    else {
-                        //Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                        Intent intent = new Intent(LoginActivity.this, HomePageMovie.class);
-                        intent.putExtra("LOGIN_RESPONSE", (Serializable) result);
-                        intent.putExtra("USERNAME", username);
-                        startActivity(intent);
-                        Toast.makeText(LoginActivity.this, "Login success", Toast.LENGTH_SHORT).show();
-
-                    }
+        Call<LoginResponse> loginResponseCall = RetrofitClient.getUserApi().signIn(new LoginData(username, password));
+        loginResponseCall.enqueue(new Callback<LoginResponse>() {
+            @Override
+            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                //Toast.makeText(LoginActivity.this, "Call API SUCCESS", Toast.LENGTH_SHORT).show();
+                result = response.body();
+                if (result == null) alert("Wrong username or password");
+                else {
+                    //Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                    Intent intent = new Intent(LoginActivity.this, HomePageMovie.class);
+                    intent.putExtra("LOGIN_RESPONSE", (Serializable) result);
+                    intent.putExtra("USERNAME", username);
+                    startActivity(intent);
+                    Toast.makeText(LoginActivity.this, "Login success", Toast.LENGTH_SHORT).show();
 
                 }
 
-                @Override
-                public void onFailure(Call<LoginResponse> call, Throwable t) {
-                    Toast.makeText(LoginActivity.this, "Call API FAIL", Toast.LENGTH_SHORT).show();
-                }
-            });
+            }
+
+            @Override
+            public void onFailure(Call<LoginResponse> call, Throwable t) {
+                Toast.makeText(LoginActivity.this, "Call API FAIL", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
     }
 
     private void alert(String message){

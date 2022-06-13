@@ -17,6 +17,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".Activity.MovieDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activity.UserActivity"
             android:exported="false"
             android:label="@string/title_activity_user"

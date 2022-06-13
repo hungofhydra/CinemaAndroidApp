@@ -9,12 +9,24 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.cinemaapp.Models.Test;
+import com.example.cinemaapp.API.RetrofitClient;
+import com.example.cinemaapp.Models.Category;
+import com.example.cinemaapp.Models.Movie;
 import com.example.cinemaapp.databinding.FragmentCurrentlyShowingBinding;
+import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class FragmentCurrentlyShowing extends Fragment {
     private RecyclerView recyclerView;
     private FragmentCurrentlyShowingBinding binding;
+    private ArrayList<Movie> movieList;
+    private Category category;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -23,26 +35,46 @@ public class FragmentCurrentlyShowing extends Fragment {
 
         binding = FragmentCurrentlyShowingBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
- 
         recyclerView = root.findViewById(R.id.recyclerViewCurrentlyShowing);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        Test[] tests = new Test[]{
-                new Test("Avengers", "2018 film", R.drawable.ic_profile),
-                new Test("Venom", "2018 film", R.drawable.ic_profile),
-                new Test("Batman", "2014 film", R.drawable.ic_profile),
-                new Test("Spiderman", "2012 film", R.drawable.ic_profile),
-                new Test("Jumanji", "2011 film", R.drawable.ic_profile),
-                new Test("Hulk", "2015 film", R.drawable.ic_profile),
-                new Test("Avatar", "2012 film", R.drawable.ic_profile)
-        };
+        Call<ArrayList<Movie>> getAllMovieCall = RetrofitClient.getMovieApi().getAllMovies();
+        getAllMovieCall.enqueue(new Callback<ArrayList<Movie>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Movie>> call, Response<ArrayList<Movie>> response) {
+                movieList = response.body();
+                ArrayList<Movie> newList = new ArrayList<Movie>();
+                newList = filterMovie(movieList);
 
-        MovieAdapter movieAdapter = new MovieAdapter(tests, FragmentCurrentlyShowing.this);
-        recyclerView.setAdapter(movieAdapter);
+
+                MovieAdapter movieAdapter = new MovieAdapter(newList, FragmentCurrentlyShowing.this);
+                recyclerView.setAdapter(movieAdapter);
+
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<Movie>> call, Throwable t) {
+
+            }
+        });
+
+
 
 
         return root;
 
+    }
+
+    public ArrayList<Movie> filterMovie(ArrayList<Movie> movieList){
+        ArrayList<Movie> movieCurrentlyShowing = new ArrayList<Movie>();
+        for(Movie movie : movieList) {
+            if (movie.trangThai.equals("đang chiếu")) {
+                movieCurrentlyShowing.add(movie);
+
+            }
+        }
+
+        return movieCurrentlyShowing;
     }
 }

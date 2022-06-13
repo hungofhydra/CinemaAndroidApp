@@ -5,12 +5,11 @@
     android:layout_height="match_parent"
     tools:context=".FragmentShowingSoon">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewShowingSoon"
+        android:layout_margin="2dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="TAB SHOWING SOON"
-        android:textSize="40dp"
-        android:gravity="center" />
+        android:layout_height="wrap_content"/>
 
 </FrameLayout>

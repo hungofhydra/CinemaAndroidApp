@@ -2,7 +2,6 @@ package com.example.cinemaapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.TextView;
@@ -71,12 +70,11 @@ private TextView header;
             Bundle extras = getIntent().getExtras();
             if(extras == null) {
                 loginResponse= null;
+                userName = null;
             } else {
                 loginResponse= (LoginResponse) extras.getSerializable("LOGIN_RESPONSE");
                 userName = extras.getString("USERNAME");
                 token = loginResponse.getToken();
-                Log.e("Test",token);
-                Log.e("Test", userName);
                 View headerView = navigationView.getHeaderView(0);
                 TextView navUsername = (TextView) headerView.findViewById(R.id.header_title);
                 navUsername.setText(userName);

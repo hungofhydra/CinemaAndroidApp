@@ -14,5 +14,4 @@ public interface MovieApi {
     @GET("movies/")
     Call<ArrayList<Movie>> getAllMovies();
 
-
 }
