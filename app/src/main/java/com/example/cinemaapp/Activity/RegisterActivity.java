@@ -76,8 +76,8 @@ public class RegisterActivity extends AppCompatActivity {
         String email = edtEmail.getText().toString();
         String phoneNumber = edtPhoneNumber.getText().toString();
         String cmnd = edtCMND.getText().toString();
-        if (r_male.isChecked()) sex = "nam";
-        else sex = "nu";
+        if (r_male.isChecked()) sex = "Nam";
+        else sex = "Nữ";
 
         if (name.isEmpty() || userName.isEmpty() || password.isEmpty() || password2.isEmpty() || email.isEmpty() || phoneNumber.isEmpty() || cmnd.isEmpty() || sex.isEmpty()) {
             alert("Error","Please input all the data required");
@@ -94,8 +94,14 @@ public class RegisterActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
                         result = response.body();
-                        Log.e("Test", result.getMessage());
-                        alert("Success","Create User success");
+
+                        String message = result.getMessage();
+                        Log.e("message", message);
+                        Check(message);
+
+                        //if(result.getMessage().equals("Username is exist")) alert("Username is already used");
+
+
                     }
 
                     @Override
@@ -109,6 +115,21 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
 
+    private void Check(String message){
+        switch (result.getMessage()){
+            case "Username is exist" :
+                alert("Username is already used");
+                break;
+            case "CMND is exist":
+                alert("CMND is already used");
+                break;
+            case "Create User success":
+                alert("Success","Create User success");
+                break;
+            default:
+                break;
+        }
+    }
     private boolean patternMatches(String emailAddress, String regexPattern) {
         return Pattern.compile(regexPattern)
                 .matcher(emailAddress)
@@ -126,6 +147,20 @@ public class RegisterActivity extends AppCompatActivity {
                         dialog.dismiss();
                         Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                         startActivity(intent);
+                    }
+                })
+                .create();
+        dlg.show();
+    }
+
+    private void alert( String message){
+        AlertDialog dlg = new AlertDialog.Builder(RegisterActivity.this)
+                .setTitle("Error")
+                .setMessage(message)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
                     }
                 })
                 .create();

@@ -52,9 +52,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
 
         final Movie movie = movieList.get(position);
 
-        //holder.textViewTypeMovie.setText(movie.thoiLuong);
-
-        //holder.movieImage.setImageResource(test.getMovieImage());
         Call<Category> getCategoryCall = RetrofitClient.getCategoryApi().getCategoryById(movie.maTheLoai);
         getCategoryCall.enqueue(new Callback<Category>() {
             @Override

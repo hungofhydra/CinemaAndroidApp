@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.BookingActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+
+        android:id="@+id/appBarLayoutBooking"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/Theme.CinemaApp.AppBarOverlay">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarBooking"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            app:title="Booking"
+
+            />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/appBarLayoutBooking"
+        android:layout_marginTop="9dp"
+        android:text="Ngày chiếu: "
+        android:textSize="30dp" />
+
+    <Spinner
+        android:id="@+id/spinnerSchedule"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/appBarLayoutBooking"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="6dp"
+        android:layout_toEndOf="@+id/textView"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_marginTop="26dp"
+        android:text="Suất chiếu: "
+        android:textSize="30dp" />
+
+    <Spinner
+        android:id="@+id/spinnerShowtime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spinnerSchedule"
+        android:layout_marginStart="75dp"
+        android:layout_marginTop="20dp"
+        android:layout_toEndOf="@+id/textView2"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView2"
+        android:layout_marginTop="59dp"
+        android:layout_marginEnd="0dp"
+        android:layout_toStartOf="@+id/spinnerTicketType"
+        android:text="Vé: "
+        android:textSize="30dp" />
+
+    <Spinner
+        android:id="@+id/spinnerTicketType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spinnerShowtime"
+        android:layout_marginStart="78dp"
+        android:layout_marginTop="25dp"
+        android:layout_toEndOf="@+id/textView2"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown" />
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:scrollbars="vertical"
+        android:layout_below="@+id/textView3">
+
+            <HorizontalScrollView
+                android:id="@+id/layoutSeat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="20dp"
+                android:gravity="center" />
+    </ScrollView>
+
+
+
+
+</RelativeLayout>
