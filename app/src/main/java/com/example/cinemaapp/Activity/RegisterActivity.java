@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -29,16 +30,14 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText edtUsername;
     private EditText edtPassword;
     private EditText edtPassword2;
-    String cbSex;
-    private EditText edtEmail;
+    androidx.appcompat.widget.Toolbar toolbar;
     private EditText edtPhoneNumber;
     private EditText edtCMND;
     private Button btnConfirmRegister;
     private RadioButton r_male, r_female;
     private String sex;
-    private String regexPattern = "^(.+)@(\\S+)$";
     private RegisterData registerData;
-    private RegisterResponse result;
+    private String message;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -49,12 +48,17 @@ public class RegisterActivity extends AppCompatActivity {
         edtUsername = findViewById(R.id.et_reg_username);
         edtPassword = findViewById(R.id.et_reg_password);
         edtPassword2 = findViewById(R.id.et_reg_password2);
-        edtEmail = findViewById(R.id.et_reg_email);
         edtPhoneNumber = findViewById(R.id.et_reg_sdt);
         edtCMND = findViewById(R.id.et_reg_cmnd);
         btnConfirmRegister = findViewById(R.id.btn_confirm_register);
         r_male = findViewById(R.id.radio_male);
         r_female = findViewById(R.id.radio_female);
+        toolbar = findViewById(R.id.toolbarRegister);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
+
         btnConfirmRegister.setOnClickListener(new View.OnClickListener() {
             @Override
 
@@ -73,31 +77,33 @@ public class RegisterActivity extends AppCompatActivity {
         String userName = edtUsername.getText().toString();
         String password = edtPassword.getText().toString();
         String password2 = edtPassword2.getText().toString();
-        String email = edtEmail.getText().toString();
+
         String phoneNumber = edtPhoneNumber.getText().toString();
         String cmnd = edtCMND.getText().toString();
         if (r_male.isChecked()) sex = "Nam";
         else sex = "Nữ";
 
-        if (name.isEmpty() || userName.isEmpty() || password.isEmpty() || password2.isEmpty() || email.isEmpty() || phoneNumber.isEmpty() || cmnd.isEmpty() || sex.isEmpty()) {
+        if (name.isEmpty() || userName.isEmpty() || password.isEmpty() || password2.isEmpty() || phoneNumber.isEmpty() || cmnd.isEmpty() || sex.isEmpty()) {
             alert("Error","Please input all the data required");
         }
         else {
             if (password.length()<8) alert("Error","Password length must be over or equal to 8 character");
             else if (!password.equals(password2) ) alert("Error","Password and re-enter password are not the same");
-            else if (!patternMatches(email,regexPattern)) alert("Error","Wrong email format");
             else if (phoneNumber.length()!= 10) alert("Error","Wrong phone number format");
             else {
-                registerData = new RegisterData(name,sex,cmnd,phoneNumber,email,userName,password);
+                registerData = new RegisterData(name,sex,cmnd,phoneNumber,userName,password);
                 Call<RegisterResponse> registerCall = RetrofitClient.getUserApi().signUp(registerData);
                 registerCall.enqueue(new Callback<RegisterResponse>() {
                     @Override
                     public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
-                        result = response.body();
-
-                        String message = result.getMessage();
-                        Log.e("message", message);
-                        Check(message);
+                        if (response.body() == null) alertError("Error", "Username or CMND already exist");
+                        else {
+                            RegisterResponse result = response.body();
+                            if (result == null) message = null;
+                            else message = result.getMessage();
+                            Log.e("message", message);
+                            Check(message);
+                        }
 
                         //if(result.getMessage().equals("Username is exist")) alert("Username is already used");
 
@@ -116,12 +122,9 @@ public class RegisterActivity extends AppCompatActivity {
 
 
     private void Check(String message){
-        switch (result.getMessage()){
-            case "Username is exist" :
-                alert("Username is already used");
-                break;
-            case "CMND is exist":
-                alert("CMND is already used");
+        switch (message){
+            case "NULL" :
+                alert("Username or CMND is already used");
                 break;
             case "Create User success":
                 alert("Success","Create User success");
@@ -153,6 +156,20 @@ public class RegisterActivity extends AppCompatActivity {
         dlg.show();
     }
 
+    private void alertError(String title, String message){
+        AlertDialog dlg = new AlertDialog.Builder(RegisterActivity.this)
+                .setTitle(title)
+                .setMessage(message)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .create();
+        dlg.show();
+    }
+
     private void alert( String message){
         AlertDialog dlg = new AlertDialog.Builder(RegisterActivity.this)
                 .setTitle("Error")
@@ -165,6 +182,16 @@ public class RegisterActivity extends AppCompatActivity {
                 })
                 .create();
         dlg.show();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }

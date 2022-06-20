@@ -9,5 +9,9 @@
             android:icon="@drawable/ic_home"
             android:title="@string/menu_home"/>
 
+        <item
+            android:id="@+id/nav_ticket"
+            android:icon="@drawable/ticket"
+            android:title="Ticket History"/>
     </group>
 </menu>

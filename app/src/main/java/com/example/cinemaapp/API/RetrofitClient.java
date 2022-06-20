@@ -50,5 +50,8 @@ public class RetrofitClient {
         SeatApi seatApi = getRetrofit().create(SeatApi.class);
         return seatApi;
     }
-
+    public static TicketApi getTicketApi(){
+        TicketApi ticketApi = getRetrofit().create(TicketApi.class);
+        return ticketApi;
+    }
 }

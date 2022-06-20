@@ -1,6 +1,8 @@
 package com.example.cinemaapp.Activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -32,11 +34,12 @@ public class MovieDetailActivity extends YouTubeBaseActivity {
     String api_key = "AIzaSyDqQPc8YPn2peFqZVI3M_KCjfY595UqNEY";
     YouTubePlayerView youTubePlayerView;
     Button btn;
-
+    SharedPreferences sp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_detail);
+        sp = getSharedPreferences("MyUserPrefs", Context.MODE_PRIVATE);
         movieName = findViewById(R.id.textNameMovie);
         movieType = findViewById(R.id.textTypeMovie);
         movieDirector = findViewById(R.id.textDirectorMovie);
@@ -88,12 +91,15 @@ public class MovieDetailActivity extends YouTubeBaseActivity {
     }
 
     private void setProfile(Movie movie){
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putInt( "maPhim", movie.id);
+        editor.commit();
         movieName.setText(movie.tenPhim);
         movieDirector.setText("Đạo diễn: " + movie.daoDien);
         movieLength.setText("Thời lượng: " + movie.thoiLuong + " phút");
         movieCountry.setText("Nước sản xuất: " + movie.nuocSanXuat);
         movieContent.setText("Nội dung: " + movie.noiDungPhim);
-        //setVideo(movie.trailer);
+        setVideo(movie.trailer);
         Picasso.get().load(movie.poster).into(posterImage);
     }
     private void setVideo(String youTubeUrl){

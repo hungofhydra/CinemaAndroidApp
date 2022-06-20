@@ -1,4 +1,4 @@
-package com.example.cinemaapp;
+package com.example.cinemaapp.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,22 +11,20 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.cinemaapp.API.RetrofitClient;
 import com.example.cinemaapp.Activity.MovieDetailActivity;
-import com.example.cinemaapp.Models.Category;
 import com.example.cinemaapp.Models.Movie;
+import com.example.cinemaapp.R;
+import com.example.cinemaapp.ui.Fragment.FragmentCurrentlyShowing;
+import com.example.cinemaapp.ui.Fragment.FragmentShowingSoon;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
     String tenTheLoai;
     List<Movie> movieList;
     Context context;
+    View view;
     public MovieAdapter(List<Movie> movieList, FragmentCurrentlyShowing fragmentCurrentlyShowing){
         this.context = fragmentCurrentlyShowing.getActivity();
         this.movieList = movieList;
@@ -51,21 +49,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         final Movie movie = movieList.get(position);
-
-        Call<Category> getCategoryCall = RetrofitClient.getCategoryApi().getCategoryById(movie.maTheLoai);
-        getCategoryCall.enqueue(new Callback<Category>() {
-            @Override
-            public void onResponse(Call<Category> call, Response<Category> response) {
-                Category category = response.body();
-                tenTheLoai = category.tenTheLoai;
-                setInfo(holder,tenTheLoai,movie.tenPhim,movie.poster);
-            }
-
-            @Override
-            public void onFailure(Call<Category> call, Throwable t) {
-
-            }
-        });
+        tenTheLoai = movie.theLoaiPhim.tenTheLoai;
+        setInfo(holder,tenTheLoai,movie.tenPhim,movie.poster);
         holder.textViewTypeMovie.setText(tenTheLoai);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,11 +81,10 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             textViewTypeMovie = itemView.findViewById(R.id.textTypeMovie);
         }
     }
+
     public void setInfo(ViewHolder holder, String tenTheLoai, String tenPhim, String urlImage){
 
-
         holder.textViewMovieName.setText(tenPhim);
-
         holder.textViewTypeMovie.setText(tenTheLoai);
         Picasso.get().load(urlImage).into(holder.movieImage);
     }

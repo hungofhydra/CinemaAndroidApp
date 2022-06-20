@@ -1,4 +1,4 @@
-package com.example.cinemaapp.ui.home;
+package com.example.cinemaapp.ui.Fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.cinemaapp.R;
-import com.example.cinemaapp.VPAdapter;
+import com.example.cinemaapp.Adapter.VPAdapter;
 import com.example.cinemaapp.databinding.FragmentHomeBinding;
 import com.google.android.material.tabs.TabLayout;
 

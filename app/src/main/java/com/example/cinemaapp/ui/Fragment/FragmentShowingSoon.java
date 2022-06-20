@@ -1,4 +1,4 @@
-package com.example.cinemaapp;
+package com.example.cinemaapp.ui.Fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -6,11 +6,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cinemaapp.API.RetrofitClient;
 import com.example.cinemaapp.Models.Movie;
+import com.example.cinemaapp.Adapter.MovieAdapter;
+import com.example.cinemaapp.R;
 import com.example.cinemaapp.databinding.FragmentShowingSoonBinding;
 
 import java.util.ArrayList;
@@ -35,8 +37,8 @@ public class FragmentShowingSoon extends Fragment {
 
         recyclerView2 = root.findViewById(R.id.recyclerViewShowingSoon);
         recyclerView2.setHasFixedSize(true);
-        recyclerView2.setLayoutManager(new LinearLayoutManager(getActivity()));
-
+        //recyclerView2.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView2.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         Call<ArrayList<Movie>> getAllMovieCall = RetrofitClient.getMovieApi().getAllMovies();
         getAllMovieCall.enqueue(new Callback<ArrayList<Movie>>() {
             @Override

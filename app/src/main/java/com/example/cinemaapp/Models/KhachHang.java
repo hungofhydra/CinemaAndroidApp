@@ -3,6 +3,8 @@ package com.example.cinemaapp.Models;
 public class KhachHang {
     public String tenKH;
     public String gioiTinh;
+    public String CMND;
+    public String SDT;
 
     @Override
     public String toString() {
@@ -53,6 +55,5 @@ public class KhachHang {
         this.SDT = SDT;
     }
 
-    public String CMND;
-    public String SDT;
+
 }

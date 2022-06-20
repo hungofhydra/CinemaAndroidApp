@@ -11,7 +11,8 @@
         android:id="@+id/appBarLayoutBooking"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/Theme.CinemaApp.AppBarOverlay">
+        android:theme="@style/Theme.CinemaApp.AppBarOverlay"
+        >
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbarBooking"
@@ -99,7 +100,36 @@
                 android:gravity="center" />
     </ScrollView>
 
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="59dp"
+        android:layout_marginEnd="0dp"
+        android:text="Tổng cộng: "
+        android:textSize="30dp" />
 
+    <TextView
+        android:id="@+id/tv_Total"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="59dp"
+        android:layout_marginEnd="0dp"
+        android:layout_toEndOf="@+id/textView4"
+        android:text="Test: "
+        android:textSize="30dp" />
+
+    <Button
+        android:id="@+id/bookingButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="0dp"
+        android:text="Đặt vé" />
 
 
 </RelativeLayout>

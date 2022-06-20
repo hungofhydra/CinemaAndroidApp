@@ -1,4 +1,4 @@
-package com.example.cinemaapp;
+package com.example.cinemaapp.ui.Fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -6,14 +6,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cinemaapp.API.RetrofitClient;
-import com.example.cinemaapp.Models.Category;
 import com.example.cinemaapp.Models.Movie;
+import com.example.cinemaapp.Adapter.MovieAdapter;
+import com.example.cinemaapp.R;
 import com.example.cinemaapp.databinding.FragmentCurrentlyShowingBinding;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -25,7 +25,6 @@ public class FragmentCurrentlyShowing extends Fragment {
     private RecyclerView recyclerView;
     private FragmentCurrentlyShowingBinding binding;
     private ArrayList<Movie> movieList;
-    private Category category;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -37,8 +36,8 @@ public class FragmentCurrentlyShowing extends Fragment {
         View root = binding.getRoot();
         recyclerView = root.findViewById(R.id.recyclerViewCurrentlyShowing);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
+        //recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         Call<ArrayList<Movie>> getAllMovieCall = RetrofitClient.getMovieApi().getAllMovies();
         getAllMovieCall.enqueue(new Callback<ArrayList<Movie>>() {
             @Override
@@ -46,8 +45,6 @@ public class FragmentCurrentlyShowing extends Fragment {
                 movieList = response.body();
                 ArrayList<Movie> newList = new ArrayList<Movie>();
                 newList = filterMovie(movieList);
-
-
                 MovieAdapter movieAdapter = new MovieAdapter(newList, FragmentCurrentlyShowing.this);
                 recyclerView.setAdapter(movieAdapter);
 

@@ -1,4 +1,4 @@
-package com.example.cinemaapp.ui.home;
+package com.example.cinemaapp.ui.Fragment;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

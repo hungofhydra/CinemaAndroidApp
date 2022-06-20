@@ -5,16 +5,14 @@ public class RegisterData {
     private String gioiTinh;
     private String CMND;
     private String SDT;
-    private String email;
     private String username;
     private String password;
 
-    public RegisterData(String tenKH, String gioiTinh, String CMND, String SDT, String email, String username, String password) {
+    public RegisterData(String tenKH, String gioiTinh, String CMND, String SDT, String username, String password) {
         this.tenKH = tenKH;
         this.gioiTinh = gioiTinh;
         this.CMND = CMND;
         this.SDT = SDT;
-        this.email = email;
         this.username = username;
         this.password = password;
     }
@@ -49,14 +47,6 @@ public class RegisterData {
 
     public void setSDT(String SDT) {
         this.SDT = SDT;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getUsername() {

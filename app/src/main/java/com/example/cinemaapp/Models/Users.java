@@ -6,6 +6,7 @@ public class Users {
     public String trangThai;
     public KhachHang khachHang;
 
+
     public Users(String username, String type, String trangThai, KhachHang khachHang) {
         this.username = username;
         this.type = type;

@@ -1,7 +1,9 @@
 package com.example.cinemaapp.Activity;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -31,6 +33,8 @@ public class LoginActivity extends AppCompatActivity {
     private EditText edtPassword;
     private Button btnLogin;
     private Button btnRegister;
+    int userId;
+    SharedPreferences sp;
     List<Movie> movieList;
 
     LoginResponse result;
@@ -39,6 +43,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        sp = getSharedPreferences("MyUserPrefs", Context.MODE_PRIVATE);
 
         edtUserName = findViewById(R.id.edt_username);
         edtPassword = findViewById(R.id.edt_password);
@@ -79,18 +84,29 @@ public class LoginActivity extends AppCompatActivity {
         loginResponseCall.enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                //Toast.makeText(LoginActivity.this, "Call API SUCCESS", Toast.LENGTH_SHORT).show();
-                result = response.body();
-                if (result == null) alert("Wrong username or password");
+                if (response.body() == null) alert("Wrong username or password");
                 else {
-                    //Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                    Intent intent = new Intent(LoginActivity.this, HomePageMovie.class);
-                    intent.putExtra("LOGIN_RESPONSE", (Serializable) result);
-                    intent.putExtra("USERNAME", username);
-                    startActivity(intent);
-                    Toast.makeText(LoginActivity.this, "Login success", Toast.LENGTH_SHORT).show();
+                    result = response.body();
+                    userId = result.user.id;
+                    SharedPreferences.Editor editor = sp.edit();
+                    editor.putInt( "userID", userId);
+                    editor.putString("Token", result.token);
+                    editor.commit();
+                    if (result == null) alert("Wrong username or password");
+                    else {
+                        //Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                        Intent intent = new Intent(LoginActivity.this, HomePageMovie.class);
+                        intent.putExtra("LOGIN_RESPONSE", (Serializable) result);
+                        intent.putExtra("USERNAME", username);
 
+
+                        startActivity(intent);
+                        Toast.makeText(LoginActivity.this, "Login success", Toast.LENGTH_SHORT).show();
+
+                    }
                 }
+                //Toast.makeText(LoginActivity.this, "Call API SUCCESS", Toast.LENGTH_SHORT).show();
+
 
             }
 

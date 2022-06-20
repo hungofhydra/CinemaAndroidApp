@@ -1,18 +1,16 @@
 package com.example.cinemaapp.Models;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class UserResponse {
+public class UserResponse implements Serializable {
     public int id;
     public String type;
     public String trangThai;
     public String username;
     public String password;
     public Date createdAt;
-
-    public int getId() {
-        return id;
-    }
+    public Date updatedAt;
 
     public UserResponse(int id, String type, String trangThai, String username, String password, Date createdAt, Date updatedAt) {
         this.id = id;
@@ -23,6 +21,7 @@ public class UserResponse {
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
+
 
     @Override
     public String toString() {
@@ -43,6 +42,10 @@ public class UserResponse {
 
     public String getType() {
         return type;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public void setType(String type) {
@@ -89,5 +92,7 @@ public class UserResponse {
         this.updatedAt = updatedAt;
     }
 
-    public Date updatedAt;
+
+
+
 }

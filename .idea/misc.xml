@@ -5,6 +5,7 @@
       <map>
         <entry key="..\:/Hoc Tap/Nam 4 HK2/CinemaApp/app/src/main/res/drawable/side_nav_bar.xml" value="0.161" />
         <entry key="..\:/Hoc Tap/Nam 4 HK2/CinemaApp/app/src/main/res/layout/activity_booking.xml" value="0.264" />
+        <entry key="..\:/Hoc Tap/Nam 4 HK2/CinemaApp/app/src/main/res/layout/activity_change_password.xml" value="0.22530996152201796" />
         <entry key="..\:/Hoc Tap/Nam 4 HK2/CinemaApp/app/src/main/res/layout/activity_home.xml" value="0.2" />
         <entry key="..\:/Hoc Tap/Nam 4 HK2/CinemaApp/app/src/main/res/layout/activity_home_page_movie.xml" value="0.22530996152201796" />
         <entry key="..\:/Hoc Tap/Nam 4 HK2/CinemaApp/app/src/main/res/layout/activity_login.xml" value="0.1559383499546691" />
@@ -12,6 +13,7 @@
         <entry key="..\:/Hoc Tap/Nam 4 HK2/CinemaApp/app/src/main/res/layout/activity_movie_detail.xml" value="0.25" />
         <entry key="..\:/Hoc Tap/Nam 4 HK2/CinemaApp/app/src/main/res/layout/activity_profile.xml" value="0.10389055151774262" />
         <entry key="..\:/Hoc Tap/Nam 4 HK2/CinemaApp/app/src/main/res/layout/activity_register.xml" value="0.264" />
+        <entry key="..\:/Hoc Tap/Nam 4 HK2/CinemaApp/app/src/main/res/layout/activity_ticket_history.xml" value="0.22530996152201796" />
         <entry key="..\:/Hoc Tap/Nam 4 HK2/CinemaApp/app/src/main/res/layout/activity_user.xml" value="0.264" />
         <entry key="..\:/Hoc Tap/Nam 4 HK2/CinemaApp/app/src/main/res/layout/app_bar_home_page.xml" value="0.264" />
         <entry key="..\:/Hoc Tap/Nam 4 HK2/CinemaApp/app/src/main/res/layout/app_bar_home_page_movie.xml" value="0.22530996152201796" />
@@ -26,6 +28,8 @@
         <entry key="..\:/Hoc Tap/Nam 4 HK2/CinemaApp/app/src/main/res/layout/movie_item_list.xml" value="0.264" />
         <entry key="..\:/Hoc Tap/Nam 4 HK2/CinemaApp/app/src/main/res/layout/nav_header_home_page.xml" value="0.264" />
         <entry key="..\:/Hoc Tap/Nam 4 HK2/CinemaApp/app/src/main/res/layout/nav_header_home_page_movie.xml" value="0.22530996152201796" />
+        <entry key="..\:/Hoc Tap/Nam 4 HK2/CinemaApp/app/src/main/res/layout/ticket_detail_list.xml" value="0.22445489525438223" />
+        <entry key="..\:/Hoc Tap/Nam 4 HK2/CinemaApp/app/src/main/res/layout/ticket_item_list.xml" value="0.264" />
         <entry key="..\:/Hoc Tap/Nam 4 HK2/CinemaApp/app/src/main/res/menu/activity_main_drawer.xml" value="0.22530996152201796" />
         <entry key="..\:/Hoc Tap/Nam 4 HK2/CinemaApp/app/src/main/res/menu/bottom_nav_menu.xml" value="0.17657118426678067" />
         <entry key="..\:/Hoc Tap/Nam 4 HK2/CinemaApp/app/src/main/res/menu/home_page_movie.xml" value="0.22530996152201796" />

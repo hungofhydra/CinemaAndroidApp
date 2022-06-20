@@ -7,11 +7,27 @@
     android:background="@drawable/background"
     tools:context=".Activity.RegisterActivity">
 
+    <com.google.android.material.appbar.AppBarLayout
+
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/Theme.CinemaApp.AppBarOverlay">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarRegister"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:title="Register"
+            />
+
+    </com.google.android.material.appbar.AppBarLayout>
     <EditText
         android:id="@+id/et_name"
         android:layout_width="260dp"
         android:layout_height="30dp"
-        android:layout_below="@+id/iv_user"
+        android:layout_below="@+id/appBarLayout"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
         android:background="#11000000"
@@ -23,7 +39,7 @@
         android:id="@+id/tv_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/iv_user"
+        android:layout_below="@+id/appBarLayout"
         android:layout_alignStart="@+id/et_name"
         android:layout_alignLeft="@+id/et_name"
         android:layout_marginTop="22dp"
@@ -143,34 +159,10 @@
     </RadioGroup>
 
     <EditText
-        android:id="@+id/et_reg_email"
-        android:layout_width="260dp"
-        android:layout_height="30dp"
-        android:layout_below="@+id/tv_sex"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="38dp"
-        android:background="#11000000"
-        android:ems="10"
-        android:inputType="textEmailAddress"
-        android:textColor="#ffffff" />
-
-    <TextView
-        android:id="@+id/tv_reg_email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_sex"
-        android:layout_alignStart="@+id/et_name"
-        android:layout_alignLeft="@+id/et_name"
-        android:layout_marginTop="10dp"
-        android:text="Email"
-        android:textColor="#FFFFFF"
-        android:textSize="16sp" />
-
-    <EditText
         android:id="@+id/et_reg_sdt"
         android:layout_width="260dp"
         android:layout_height="30dp"
-        android:layout_below="@+id/et_reg_email"
+        android:layout_below="@+id/tv_sex"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="38dp"
         android:background="#11000000"
@@ -181,7 +173,7 @@
         android:id="@+id/tv_reg_sdt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/et_reg_email"
+        android:layout_below="@+id/tv_sex"
         android:layout_alignStart="@+id/et_name"
         android:layout_alignLeft="@+id/et_name"
         android:layout_marginTop="10dp"

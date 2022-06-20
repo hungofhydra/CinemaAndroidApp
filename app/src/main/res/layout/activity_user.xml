@@ -18,6 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
+            app:title="Profile Information"
             />
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -187,20 +188,20 @@
                 app:layout_constraintTop_toBottomOf="@+id/layout_contact_no"
                 app:layout_constraintWidth_percent="0.7">
 
-                <EditText
-                    android:id="@+id/et_status"
+                <Button
+                    android:id="@+id/change_Password_Button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#00000000"
-                    android:focusable="false"
                     android:gravity="center"
-                    android:hint="Status"
-                    android:inputType="none"
-                    android:padding="30dp"
-                    android:textColor="#000000"
-                    android:textColorHint="#808080"
-                    android:textSize="15sp" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layout_contact_no"
+                    android:text="Change Password"
+                    />
+
             </com.google.android.material.textfield.TextInputLayout>
+
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

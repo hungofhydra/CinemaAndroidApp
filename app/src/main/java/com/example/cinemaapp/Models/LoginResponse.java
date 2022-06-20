@@ -7,12 +7,12 @@ import java.io.Serializable;
 
 public class LoginResponse implements Serializable, Parcelable {
     public String message;
-    public UserResponse userResponse;
+    public UserResponse user;
     public String token;
 
     public LoginResponse(String message, UserResponse userResponse, String token) {
         this.message = message;
-        this.userResponse = userResponse;
+        this.user = userResponse;
         this.token = token;
     }
 
@@ -42,11 +42,11 @@ public class LoginResponse implements Serializable, Parcelable {
     }
 
     public UserResponse getUser() {
-        return userResponse;
+        return user;
     }
 
     public void setUser(UserResponse userResponse) {
-        this.userResponse = userResponse;
+        this.user = userResponse;
     }
 
     public String getToken() {
@@ -61,7 +61,7 @@ public class LoginResponse implements Serializable, Parcelable {
     public String toString() {
         return "LoginResponse{" +
                 "message='" + message + '\'' +
-                ", userResponse=" + userResponse +
+                ", user=" + user +
                 ", token='" + token + '\'' +
                 '}';
     }

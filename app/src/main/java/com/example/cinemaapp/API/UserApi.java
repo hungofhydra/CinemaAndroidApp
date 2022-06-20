@@ -1,7 +1,9 @@
 package com.example.cinemaapp.API;
 
+import com.example.cinemaapp.Models.ChangePasswordData;
 import com.example.cinemaapp.Models.LoginData;
 import com.example.cinemaapp.Models.LoginResponse;
+import com.example.cinemaapp.Models.Message;
 import com.example.cinemaapp.Models.RegisterData;
 import com.example.cinemaapp.Models.RegisterResponse;
 import com.example.cinemaapp.Models.Users;
@@ -26,11 +28,14 @@ public interface UserApi {
     Call<LoginResponse> signIn(@Body LoginData loginData);
 
     @Headers( "Content-Type: application/json" )
-    @POST("users/sign-up/")
+    @POST("users/dang-ky/")
     Call<RegisterResponse> signUp(@Body RegisterData registerData);
 
     @GET("users/me/")
     Call<Users> getMyInfo(@Header("Authorization") String auth);
+
+    @POST("users/me/change-password2")
+    Call<Message> changePassword(@Header("Authorization") String auth, @Body ChangePasswordData changePasswordData);
 
 
 
